@@ -64,9 +64,6 @@ Developed by **ABDULRAHMAN ADISA AMUDA** as part of the #3MTT Showcase initiativ
 
 ---
 
-## License
-
-This project is licensed under the MIT License — feel free to use, modify, and distribute it with appropriate credit.
 
 ---
 
