@@ -1,0 +1,89 @@
+Build a fully responsive, mobile-first, single-page web app called "NaijaSmart – AI Productivity Suite for Nigerians" using only HTML, CSS, and JavaScript. No backend or API calls; all logic must run in the browser.
+
+Features:
+
+1. Landing Page:
+  - Title: "NaijaSmart – All-in-One AI Assistant for Smart Nigerians"
+  - Subtitle: "Work smarter. Study better. Hustle sharper."
+  - Four large, clean, animated buttons to navigate to:
+    - Ask AI Chat
+    - Summarize Notes
+    - Generate Smart Tasks
+    - Daily Quote
+
+2. Ask AI Chat:
+  - Input box and Send button
+  - Show a loader animation ("AI is thinking...") before responding
+  - Implement smart GPT-style chatbot logic using JavaScript string methods like .toLowerCase() and .includes() for keyword detection with fuzzy matching.
+  - Responses should include Nigerian-themed advice for keywords like "business", "money", "study", "relationship", "motivation", and fallback message: "Interesting! Try rephrasing your question."
+  - Add typing animation for the bot response using setTimeout to simulate real-time typing.
+  - Store full chat history in localStorage with timestamps.
+  - Provide buttons to download chat history as a .txt file and to clear chat history.
+
+3. Summarize Notes:
+  - Large textarea for pasting or typing notes
+  - "Summarize" button triggers JS logic that extracts main points and keywords (simulate AI summarization using string manipulation and simple heuristics).
+  - Provide Copy to Clipboard and Download as .txt functionality.
+  - Save last summary to localStorage.
+
+4. Generate Smart Tasks:
+  - Input for user to enter a goal or project (e.g., "start a YouTube channel")
+  - JS logic returns 5–7 actionable tasks based on keyword templates for "business", "study", "hustle", "personal growth".
+  - Tasks are editable inline by the user.
+  - Include loading and typing animations before displaying tasks.
+  - Save tasks to localStorage.
+  - Export tasks as .txt file.
+
+5. Daily Motivational Quotes:
+  - Button cycles through 10–15 motivational Nigerian-themed quotes with emojis.
+  - Add Copy to Clipboard and Share to Twitter buttons.
+  - Style with subtle animated background or emoji icons.
+
+6. Dark Mode toggle with sun/moon icon:
+  - Save user preference in localStorage and apply on page load.
+
+7. Responsive Navigation:
+  - Sticky top navbar or floating bottom tab with icons/text to switch between the four main tools.
+  - Use JavaScript to show/hide tool sections without reloading the page.
+
+8. Design & UX:
+  - Clean, modern UI using CSS Flexbox/Grid.
+  - Naija-inspired color palette: green, white, gold/yellow.
+  - Smooth animations for buttons, loaders, and transitions.
+  - Mobile-first responsive layout.
+
+9. Footer:
+  - Text: "Built by Abdulrahman Adisa Amuda for #3MTT Showcase"
+  - Use 3MTT branding colors or icon if possible.
+
+10. Code structure:
+  - Write in separate files: index.html, style.css, script.js
+  - Use semantic HTML, well-commented CSS and JS.
+  - Fully offline-capable; no external dependencies.
+  - Prepare for easy deployment on GitHub Pages or Replit.
+
+Additional chatbot logic example to implement in script.js:
+
+```js
+function getAIResponse(input) {
+  const q = input.toLowerCase();
+  if (q.includes("start a business")) {
+    return "Start small: register with CAC, learn your market, and use WhatsApp or Instagram to reach customers.";
+  }
+  if (q.includes("how to make money") || q.includes("make money")) {
+    return "Consider freelancing, digital services, mini-importation, or small trading using your skills.";
+  }
+  if (q.includes("study tips") || q.includes("school tips")) {
+    return "Try the Pomodoro technique: study 25 minutes, then take a 5-minute break.";
+  }
+  if (q.includes("relationship advice")) {
+    return "Communicate openly, respect boundaries, and support each other's growth.";
+  }
+  if (q.includes("motivation") || q.includes("lazy")) {
+    return "Discipline beats motivation. Set small daily goals and celebrate your progress.";
+  }
+  if (q.includes("ai tools")) {
+    return "Explore free tools like ChatGPT, Canva, and NaijaSmart to boost productivity.";
+  }
+  return "Interesting! Try rephrasing your question or ask about business, study, money, or relationships.";
+}
