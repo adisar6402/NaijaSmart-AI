@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaijaSmart - AI Productivity Suite for Nigerians</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <h1>🇳🇬 NaijaSmart</h1>
+        </div>
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-section="landing">Home</button>
+            <button class="nav-tab" data-section="chat">Chat</button>
+            <button class="nav-tab" data-section="summarize">Notes</button>
+            <button class="nav-tab" data-section="tasks">Tasks</button>
+            <button class="nav-tab" data-section="quotes">Quotes</button>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section id="landing" class="section active">
+        <div class="container">
+            <div class="hero">
+                <h1 class="hero-title">NaijaSmart – All-in-One AI Assistant for Smart Nigerians</h1>
+                <p class="hero-subtitle">Work smarter. Study better. Hustle sharper.</p>
+                
+                <div class="feature-grid">
+                    <button class="feature-card" data-section="chat">
+                        <div class="feature-icon">💬</div>
+                        <h3>Ask AI Chat</h3>
+                        <p>Get smart advice for business, study, and life</p>
+                    </button>
+                    
+                    <button class="feature-card" data-section="summarize">
+                        <div class="feature-icon">📝</div>
+                        <h3>Summarize Notes</h3>
+                        <p>Turn long notes into key points instantly</p>
+                    </button>
+                    
+                    <button class="feature-card" data-section="tasks">
+                        <div class="feature-icon">✅</div>
+                        <h3>Generate Smart Tasks</h3>
+                        <p>Break down goals into actionable steps</p>
+                    </button>
+                    
+                    <button class="feature-card" data-section="quotes">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Daily Quote</h3>
+                        <p>Nigerian-inspired motivation for your day</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chat Section -->
+    <section id="chat" class="section">
+        <div class="container">
+            <div class="chat-container">
+                <div class="section-header">
+                    <h2>🤖 Ask AI Chat</h2>
+                    <div class="chat-controls">
+                        <button id="downloadChat" class="btn-secondary">📥 Download</button>
+                        <button id="clearChat" class="btn-secondary">🗑️ Clear</button>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        <div class="message-content">
+                            <p>Hello! I'm your AI assistant. Ask me about business, study tips, relationships, or anything you need help with! 🇳🇬</p>
+                        </div>
+                        <div class="message-time" id="initialTime"></div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me anything..." maxlength="500">
+                        <button id="sendChat" class="btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summarize Notes Section -->
+    <section id="summarize" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📝 Summarize Notes</h2>
+            </div>
+            
+            <div class="summarize-container">
+                <div class="input-section">
+                    <label for="notesInput">Paste or type your notes:</label>
+                    <textarea id="notesInput" placeholder="Enter your long notes here and I'll extract the key points for you..." rows="8"></textarea>
+                    <button id="summarizeBtn" class="btn-primary">✨ Summarize</button>
+                </div>
+                
+                <div class="output-section" id="summaryOutput" style="display: none;">
+                    <div class="section-header">
+                        <h3>📋 Summary</h3>
+                        <div class="summary-controls">
+                            <button id="copySummary" class="btn-secondary">📋 Copy</button>
+                            <button id="downloadSummary" class="btn-secondary">📥 Download</button>
+                        </div>
+                    </div>
+                    <div class="summary-content" id="summaryContent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Tasks Section -->
+    <section id="tasks" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>✅ Generate Smart Tasks</h2>
+            </div>
+            
+            <div class="tasks-container">
+                <div class="input-section">
+                    <label for="goalInput">What's your goal or project?</label>
+                    <input type="text" id="goalInput" placeholder="e.g., start a YouTube channel, learn web development, grow my business..." maxlength="200">
+                    <button id="generateTasks" class="btn-primary">🚀 Generate Tasks</button>
+                </div>
+                
+                <div class="tasks-output" id="tasksOutput" style="display: none;">
+                    <div class="section-header">
+                        <h3>📋 Your Action Plan</h3>
+                        <div class="task-controls">
+                            <button id="downloadTasks" class="btn-secondary">📥 Download</button>
+                        </div>
+                    </div>
+                    <div class="tasks-list" id="tasksList"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="section">
+        <div class="container">
+            <div class="quotes-container">
+                <div class="section-header">
+                    <h2>⭐ Daily Motivation</h2>
+                </div>
+                
+                <div class="quote-display">
+                    <div class="quote-content" id="quoteContent">
+                        <p id="quoteText">Click the button below to get your daily dose of motivation! 🇳🇬</p>
+                    </div>
+                    
+                    <div class="quote-controls">
+                        <button id="newQuote" class="btn-primary">✨ New Quote</button>
+                        <button id="copyQuote" class="btn-secondary">📋 Copy</button>
+                        <button id="shareQuote" class="btn-secondary">🐦 Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader">
+            <div class="loader-spinner"></div>
+            <p id="loadingText">AI is thinking...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>🚀 Built by <strong>Abdulrahman Adisa Amuda</strong> for <span class="highlight">#3MTT Showcase</span></p>
+            <p>Empowering Nigerian innovation through technology 🇳🇬</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
