@@ -283,44 +283,49 @@ class NaijaSmart {
     getAIResponse(input) {
         const q = input.toLowerCase();
         
-        if (q.includes("start a business") || q.includes("business idea")) {
-            return "Start small: register with CAC, learn your market, and use WhatsApp or Instagram to reach customers. Focus on solving a real problem people face! 🚀";
+        // Define keyword categories with variations
+        const keywords = {
+            study: ["study", "studying", "school", "exam", "read", "reading", "learn", "learning", "education", "student", "academic", "book", "notes", "test", "quiz"],
+            business: ["business", "startup", "company", "entrepreneur", "entrepreneurship", "venture", "enterprise", "start a business", "business idea", "commerce"],
+            money: ["money", "cash", "make money", "earn money", "income", "salary", "profit", "wealth", "rich", "financial", "side hustle", "hustle", "earn", "pay"],
+            relationship: ["relationship", "love", "dating", "partner", "girlfriend", "boyfriend", "marriage", "breakup", "romance", "couple", "heart"],
+            motivation: ["lazy", "motivation", "motivate", "discipline", "goal", "focus", "procrastination", "unmotivated", "inspiration", "drive", "ambition"],
+            tech: ["programming", "coding", "tech", "technology", "software", "developer", "code", "computer", "website", "app"],
+            youtube: ["youtube", "content creation", "video", "channel", "creator", "vlog", "streaming"],
+            freelancing: ["freelancing", "remote work", "upwork", "fiverr", "gig", "contract", "independent"],
+            abroad: ["japa", "abroad", "relocate", "immigration", "visa", "travel", "overseas", "foreign"],
+            health: ["depression", "sad", "mental health", "anxiety", "stress", "wellbeing", "therapy"]
+        };
+
+        const responses = {
+            study: "Try the Pomodoro technique: study 25 minutes, then take a 5-minute break. Find past questions and practice regularly. Join serious study groups! 📚",
+            business: "Start small: register with CAC, learn your market, and use WhatsApp or Instagram to reach customers. Focus on solving a real problem people face! 🚀",
+            money: "Consider freelancing, digital services, mini-importation, or small trading using your skills. Start online with platforms like Fiverr or social media! 💰",
+            relationship: "Communicate openly, respect boundaries, and support each other's growth. Trust and understanding are the foundation of any good relationship! 💕",
+            motivation: "Discipline beats motivation. Set small daily goals and celebrate your progress. Remember: 'No condition is permanent' - keep pushing! 💪",
+            tech: "Start with free resources like freeCodeCamp, practice daily, and build projects. Join tech communities for support. The tech space needs more Nigerians! 💻",
+            youtube: "Start with what you have - your phone camera is enough! Focus on your niche, be consistent, and engage with your audience. Quality over quantity! 🎥",
+            freelancing: "Build a strong portfolio, start with lower rates to gain reviews, and deliver excellent work. Platforms like Upwork, Fiverr, and LinkedIn are great starting points! 🌐",
+            abroad: "Focus on building skills that are globally relevant, save money, research visa requirements, and network with people in your target country. Preparation is key! ✈️",
+            health: "Your mental health matters! Talk to someone you trust, consider professional help if needed, and remember that it's okay not to be okay. You're not alone! 🤗"
+        };
+
+        // Check each category for keyword matches
+        for (const [category, keywordList] of Object.entries(keywords)) {
+            if (keywordList.some(keyword => q.includes(keyword))) {
+                return responses[category];
+            }
         }
-        if (q.includes("how to make money") || q.includes("make money") || q.includes("earn money")) {
-            return "Consider freelancing, digital services, mini-importation, or small trading using your skills. Start online with platforms like Fiverr or social media! 💰";
-        }
-        if (q.includes("study tips") || q.includes("school tips") || q.includes("exam")) {
-            return "Try the Pomodoro technique: study 25 minutes, then take a 5-minute break. Find past questions and practice regularly. Join serious study groups! 📚";
-        }
-        if (q.includes("relationship advice") || q.includes("relationship")) {
-            return "Communicate openly, respect boundaries, and support each other's growth. Trust and understanding are the foundation of any good relationship! 💕";
-        }
-        if (q.includes("motivation") || q.includes("lazy") || q.includes("unmotivated")) {
-            return "Discipline beats motivation. Set small daily goals and celebrate your progress. Remember: 'No condition is permanent' - keep pushing! 💪";
-        }
-        if (q.includes("ai tools") || q.includes("productivity")) {
+
+        // Special cases for specific phrases
+        if (q.includes("ai tools") || q.includes("productivity tools")) {
             return "Explore free tools like ChatGPT, Canva, and NaijaSmart to boost productivity. Use technology to work smarter, not harder! 🤖";
         }
-        if (q.includes("youtube") || q.includes("content creation")) {
-            return "Start with what you have - your phone camera is enough! Focus on your niche, be consistent, and engage with your audience. Quality over quantity! 🎥";
-        }
-        if (q.includes("programming") || q.includes("coding") || q.includes("tech")) {
-            return "Start with free resources like freeCodeCamp, practice daily, and build projects. Join tech communities for support. The tech space needs more Nigerians! 💻";
-        }
-        if (q.includes("freelancing") || q.includes("remote work")) {
-            return "Build a strong portfolio, start with lower rates to gain reviews, and deliver excellent work. Platforms like Upwork, Fiverr, and LinkedIn are great starting points! 🌐";
-        }
-        if (q.includes("japa") || q.includes("abroad") || q.includes("relocate")) {
-            return "Focus on building skills that are globally relevant, save money, research visa requirements, and network with people in your target country. Preparation is key! ✈️";
-        }
-        if (q.includes("depression") || q.includes("sad") || q.includes("mental health")) {
-            return "Your mental health matters! Talk to someone you trust, consider professional help if needed, and remember that it's okay not to be okay. You're not alone! 🤗";
-        }
-        if (q.includes("time management") || q.includes("productivity")) {
+        if (q.includes("time management")) {
             return "Use time-blocking, prioritize important tasks first, and eliminate distractions. Remember: 'Time na money' - use it wisely! ⏰";
         }
         
-        return "Interesting! Try rephrasing your question or ask about business, study, money, relationships, or personal development. I'm here to help! 😊";
+        return "Try rephrasing your question or ask about business, study, money, relationships, or personal development. I'm here to help! 😊";
     }
 
     downloadChatHistory() {
@@ -675,6 +680,14 @@ class NaijaSmart {
     }
 
     formatTime(date) {
+        // Ensure date is a Date object
+        if (typeof date === 'string') {
+            date = new Date(date);
+        }
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            date = new Date();
+        }
+        
         return date.toLocaleTimeString('en-US', { 
             hour: '2-digit', 
             minute: '2-digit',
